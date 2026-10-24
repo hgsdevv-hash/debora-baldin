@@ -56,20 +56,17 @@ button{font:inherit;color:inherit}
 .imark svg{display:block;width:100%;height:auto;overflow:visible}
 .imark path{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .m1{color:var(--cu)}
-.m1 path{stroke:currentColor;stroke-dasharray:1;stroke-dashoffset:1;animation:idraw 1.5s var(--ease) forwards}
-.m1 .st{animation-delay:.15s;animation-duration:1.1s}
-.m1 .cup{animation-delay:.85s;animation-duration:.9s}
-.m1 .wl,.m1 .wr{animation-delay:1.05s;animation-duration:1.7s}
-.m1 .bulb,.m2 .bulb{fill:currentColor;stroke:none;stroke-dasharray:none;stroke-dashoffset:0;transform-origin:50px 62px;transform:scale(0);animation:ipop .7s var(--ease) .7s forwards}
-.m2{position:absolute;inset:0;color:#fff4e6;opacity:0;-webkit-mask-image:linear-gradient(110deg,transparent 38%,#000 50%,transparent 62%);mask-image:linear-gradient(110deg,transparent 38%,#000 50%,transparent 62%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:ishine 1.2s ease-in-out 2.75s forwards}
+.m1 .line{stroke:currentColor;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0;animation:idraw 2.6s cubic-bezier(.45,.05,.3,1) .2s forwards}
+.m1 .bulb,.m2 .bulb{fill:currentColor;stroke:none;transform-origin:50px 64px;transform:scale(0);animation:ipop .6s var(--ease) 2.65s forwards}
+.m2{position:absolute;inset:0;color:#fff4e6;opacity:0;pointer-events:none;-webkit-mask-image:linear-gradient(110deg,transparent 38%,#000 50%,transparent 62%);mask-image:linear-gradient(110deg,transparent 38%,#000 50%,transparent 62%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:ishine 1.2s ease-in-out 3.1s forwards}
 .m2 path{stroke:currentColor;stroke-width:2.6}
 .m2 .bulb{transform:none;animation:none}
-@keyframes idraw{to{stroke-dashoffset:0}}
+@keyframes idraw{0%{opacity:0}2%{opacity:1}100%{opacity:1;stroke-dashoffset:0}}
 @keyframes ipop{to{transform:scale(1)}}
 @keyframes ishine{0%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0}100%{opacity:1;-webkit-mask-position:0 0;mask-position:0 0}}
 .ibrand{margin-top:clamp(20px,4vh,34px)}
-.ibrand b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(34px,6.4vw,78px);line-height:.95;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateY(16px);animation:irise .9s var(--ease) 2.1s forwards}
-.ibrand small{display:inline-block;margin-top:12px;font-weight:700;font-size:clamp(11px,1.2vw,13px);letter-spacing:.3em;text-transform:uppercase;color:var(--cu-d);opacity:0;animation:irise .9s var(--ease) 2.45s forwards}
+.ibrand b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(34px,6.4vw,78px);line-height:.95;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateY(16px);animation:irise .9s var(--ease) 2.7s forwards}
+.ibrand small{display:inline-block;margin-top:12px;font-weight:700;font-size:clamp(11px,1.2vw,13px);letter-spacing:.3em;text-transform:uppercase;color:var(--cu-d);opacity:0;animation:irise .9s var(--ease) 3s forwards}
 @keyframes irise{to{opacity:1;transform:none}}
 .skip{position:absolute;bottom:22px;right:22px;background:transparent;border:2px solid var(--ink);color:var(--ink);min-height:44px;padding:0 16px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .skip:hover{background:var(--ink);color:var(--bone)}
@@ -210,7 +207,7 @@ section{padding:clamp(84px,11vw,136px) 0}
 .about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
 .about figure{position:relative;margin:0 20px 20px 0}
 .about figure::before{content:"";position:absolute;inset:20px -20px -20px 20px;background:var(--ink)}
-.about img{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%}
+.about img{position:relative;width:100%;aspect-ratio:373/510;object-fit:cover}
 .about h2{font-size:clamp(40px,5.4vw,72px);margin:18px 0 22px}
 .about p{color:#4a3d35;margin-top:14px;max-width:34em}
 .quote{margin-top:28px;border-left:4px solid var(--cu);padding:6px 0 6px 20px;font-weight:800;font-size:clamp(20px,2vw,25px);line-height:1.25;font-stretch:92%}
@@ -251,14 +248,15 @@ section{padding:clamp(84px,11vw,136px) 0}
 .call h2{font-size:clamp(46px,8vw,118px)}
 .call h2 em{color:var(--ink);font-style:italic}
 .call p{font-size:19px;font-weight:600;margin:24px 0 34px;max-width:28em}
-.where{background:var(--ink);color:var(--bone);padding:28px 26px}
+.where{background:var(--ink);color:var(--bone);padding:10px 10px 28px;min-width:0}
+.where>:not(.mapwin){margin-left:16px;margin-right:16px}
+.mapwin{margin-bottom:24px;background:var(--bone2);border:2px solid var(--ink)}
+.mapwin iframe{display:block;width:100%;height:240px;border:0}
 .where h3{font-weight:900;font-stretch:90%;font-size:22px;text-transform:uppercase;margin-bottom:10px}
 .where p{font-size:16px;font-weight:500;margin:0 0 18px;color:var(--mut2)}
 .where a.lnk{display:inline-flex;gap:8px;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-l);border-bottom:2px solid currentColor;padding-bottom:3px}
 @media(max-width:900px){.call .wrap{grid-template-columns:1fr}}
 
-.map{padding:0;line-height:0;background:var(--bone2)}
-.map iframe{width:100%;height:clamp(340px,48vw,460px);border:0;display:block}
 footer{background:var(--ink);color:var(--mut2);padding:30px 0 104px;font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a:hover{color:var(--cu-l)}
@@ -277,7 +275,7 @@ footer a:hover{color:var(--cu-l)}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 100 100">
-    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M47 50C45 32 32 10 15 9C4 8 3 21 9 29C15 38 28 43 41 47C27 48 16 56 18 67C20 77 33 78 41 69C45 64 47 59 47 55"/><path d="M53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C55 64 53 59 53 55"/><path d="M56 6C48 22 47 42 50 62"/><path d="M41.5 70.5C41.5 85 58.5 85 58.5 70.5"/></g>
+    <path d="M56 6C48 22 46 40 47 53C47 59 45 64 41 69C33 78 20 77 18 67C16 56 27 48 41 47C28 43 15 38 9 29C3 21 4 8 15 9C32 10 45 32 47 50C48 53 52 53 53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C57 66.5 58.5 68 58.5 71C58.5 85 41.5 85 41.5 71" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M50 59C45.6 64.5 45.2 72 50 76.5C54.8 72 54.4 64.5 50 59Z" fill="currentColor"/>
   </symbol>
 </svg>
@@ -285,8 +283,8 @@ footer a:hover{color:var(--cu-l)}
 <div id="intro" aria-hidden="true">
   <div class="istage">
     <div class="imark">
-      <svg class="m1" viewBox="0 0 100 100"><path class="wl" pathLength="1" d="M47 50C45 32 32 10 15 9C4 8 3 21 9 29C15 38 28 43 41 47C27 48 16 56 18 67C20 77 33 78 41 69C45 64 47 59 47 55"/><path class="wr" pathLength="1" d="M53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C55 64 53 59 53 55"/><path class="st" pathLength="1" d="M56 6C48 22 47 42 50 62"/><path class="cup" pathLength="1" d="M41.5 70.5C41.5 85 58.5 85 58.5 70.5"/><path class="bulb" d="M50 59C45.6 64.5 45.2 72 50 76.5C54.8 72 54.4 64.5 50 59Z"/></svg>
-      <svg class="m2" viewBox="0 0 100 100"><path class="wl" pathLength="1" d="M47 50C45 32 32 10 15 9C4 8 3 21 9 29C15 38 28 43 41 47C27 48 16 56 18 67C20 77 33 78 41 69C45 64 47 59 47 55"/><path class="wr" pathLength="1" d="M53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C55 64 53 59 53 55"/><path class="st" pathLength="1" d="M56 6C48 22 47 42 50 62"/><path class="cup" pathLength="1" d="M41.5 70.5C41.5 85 58.5 85 58.5 70.5"/><path class="bulb" d="M50 59C45.6 64.5 45.2 72 50 76.5C54.8 72 54.4 64.5 50 59Z"/></svg>
+      <svg class="m1" viewBox="0 0 100 100"><path class="line" pathLength="1" d="M56 6C48 22 46 40 47 53C47 59 45 64 41 69C33 78 20 77 18 67C16 56 27 48 41 47C28 43 15 38 9 29C3 21 4 8 15 9C32 10 45 32 47 50C48 53 52 53 53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C57 66.5 58.5 68 58.5 71C58.5 85 41.5 85 41.5 71"/><path class="bulb" d="M50 59C45.6 64.5 45.2 72 50 76.5C54.8 72 54.4 64.5 50 59Z"/></svg>
+      <svg class="m2" viewBox="0 0 100 100"><path class="line" pathLength="1" d="M56 6C48 22 46 40 47 53C47 59 45 64 41 69C33 78 20 77 18 67C16 56 27 48 41 47C28 43 15 38 9 29C3 21 4 8 15 9C32 10 45 32 47 50C48 53 52 53 53 50C55 32 68 10 85 9C96 8 97 21 91 29C85 38 72 43 59 47C73 48 84 56 82 67C80 77 67 78 59 69C57 66.5 58.5 68 58.5 71C58.5 85 41.5 85 41.5 71"/><path class="bulb" d="M50 59C45.6 64.5 45.2 72 50 76.5C54.8 72 54.4 64.5 50 59Z"/></svg>
     </div>
     <div class="ibrand"><b>Débora Baldin</b><small>Biomedicina &amp; Tricologia</small></div>
   </div>
@@ -410,7 +408,7 @@ footer a:hover{color:var(--cu-l)}
 
 <section class="about" id="sobre">
   <div class="wrap">
-    <figure class="rv"><img src="media/debora.webp" alt="Débora Baldin de jaleco branco no consultório" loading="lazy" decoding="async"></figure>
+    <figure class="rv"><img src="media/debora.webp" alt="Débora Baldin sentada em uma poltrona, sorrindo" loading="lazy" decoding="async"></figure>
     <div class="rv">
       <span class="tag cu">Quem cuida de você</span>
       <h2 class="big">Débora <em>Baldin</em></h2>
@@ -448,15 +446,12 @@ footer a:hover{color:var(--cu-l)}
       </div>
     </div>
     <div class="where rv">
+      <div class="mapwin"><iframe title="Mapa: Biomedicina &amp; Tricologia Débora Baldin, Espaço Shiva, Americana" src="https://maps.google.com/maps?q=-22.7465391,-47.3346223&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
       <h3>Onde atende</h3>
       <p>Espaço Shiva<br>R. Niels Nielsen, 150 · Vila Medon<br>Americana-SP · 13465-170<br>(19) 97129-5296</p>
       <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Biomedicina%20%26%20Tricologia%20D%C3%A9bora%20Baldin%20Americana" target="_blank" rel="noopener">Abrir no mapa →</a>
     </div>
   </div>
-</section>
-
-<section class="map" aria-label="Mapa">
-  <iframe title="Mapa: Biomedicina &amp; Tricologia Débora Baldin, Espaço Shiva, Americana" src="https://www.google.com/maps?q=Biomedicina+%26+Tricologia+D%C3%A9bora+Baldin,+R.+Niels+Nielsen,+150+-+Vila+Medon,+Americana+-+SP&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 </section>
 
 <footer>
@@ -485,7 +480,7 @@ else{
   try{sessionStorage.setItem('db-intro','1')}catch(e){}
   history.scrollRestoration='manual';
   document.getElementById('skip').onclick=endIntro;
-  setTimeout(endIntro,4500);
+  setTimeout(endIntro,5200);
 }
 // ---------- page ----------
 var booted=false; // var: boot() can run before this line when the intro is skipped
