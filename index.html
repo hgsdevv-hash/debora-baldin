@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Débora Baldin | Tricologia em Americana-SP</title>
+<meta name="description" content="Débora Baldin, biomédica e tricologista em Americana-SP (CRBM 15421). Avaliação capilar com tricoscopia, queda de cabelo, calvície, falhas na barba, microagulhamento e laser de baixa intensidade.">
+<meta name="theme-color" content="#f4ede5">
+<meta property="og:title" content="Débora Baldin | Tricologia em Americana-SP">
+<meta property="og:description" content="Queda de cabelo e calvície tratadas pela raiz, com acolhimento e ciência.">
+<meta property="og:image" content="media/debora.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,700..900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HealthAndBeautyBusiness","name":"Biomedicina & Tricologia – Débora Baldin","telephone":"+55 19 97129-5296","address":{"@type":"PostalAddress","streetAddress":"R. Niels Nielsen, 150 - Vila Medon (Espaço Shiva)","addressLocality":"Americana","addressRegion":"SP","postalCode":"13465-170","addressCountry":"BR"},"geo":{"@type":"GeoCoordinates","latitude":-22.7465391,"longitude":-47.3346223},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"5"},"sameAs":["https://www.instagram.com/deborabaldin.tricologia/","https://www.facebook.com/deborabaldinpereiranunes"]}
+</script>
+<style>
+:root{
+  --bone:#f4ede5; --bone2:#ebe1d6; --ink:#1b1310; --ink2:#2a1f1a; --mut:#76675d; --mut2:#b9aa9e;
+  --cu:#b8744f; --cu-d:#8f5235; --cu-l:#e2b08c;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bone);color:var(--ink);font:17px/1.6 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+::selection{background:var(--cu);color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.big{font-weight:900;font-stretch:88%;text-transform:uppercase;line-height:.9;letter-spacing:-.01em}
+.big em{font-style:italic;color:var(--cu)}
+.tag{display:inline-block;background:var(--ink);color:var(--bone);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px}
+.tag.cu{background:var(--cu);color:#fff}
+.tag.bone{background:var(--bone);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;border:2px solid transparent;cursor:pointer;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s}
+.btn:active{transform:translateY(2px)}
+.btn.cu{background:var(--cu);color:#fff}
+.btn.cu:hover{background:var(--ink)}
+.btn.ink{background:var(--ink);color:var(--bone)}
+.btn.ink:hover{background:var(--cu);color:#fff}
+.btn.out{border-color:var(--ink)}
+.btn.out:hover{background:var(--ink);color:var(--bone)}
+.btn.out-l{border-color:var(--bone);color:var(--bone)}
+.btn.out-l:hover{background:var(--bone);color:var(--ink)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+
+/* ---------- INTRO: hair growing on two profiles, drawn on canvas ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:var(--bone);overflow:hidden;transition:opacity 1s var(--ease),visibility 1s}
+#intro.out{opacity:0;visibility:hidden}
+#hair{position:absolute;inset:0;width:100%;height:100%}
+.isteps{position:absolute;top:max(22px,4vh);left:50%;transform:translateX(-50%);display:flex;gap:4px;transition:opacity .5s}
+.isteps span{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;background:var(--bone2);color:var(--mut);white-space:nowrap;transition:background .35s,color .35s}
+.isteps span.on{background:var(--ink);color:var(--bone)}
+.isteps span.done{color:var(--ink)}
+.isteps b{margin-right:8px;color:var(--cu)}
+.icap{position:absolute;left:0;right:0;bottom:max(64px,10vh);text-align:center;font-weight:900;font-stretch:88%;font-size:clamp(22px,3.4vw,40px);line-height:1.05;text-transform:uppercase;padding:0 24px;transition:opacity .35s,transform .35s}
+.icap.swap{opacity:0;transform:translateY(6px)}
+.ibrand{position:absolute;left:0;right:0;bottom:max(48px,8vh);text-align:center;pointer-events:none}
+.ibrand svg{opacity:0;transition:opacity .6s;width:clamp(70px,9vw,110px);height:auto;margin:0 auto 10px;overflow:visible}
+.ibrand svg path,.ibrand svg ellipse{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease)}
+.ibrand b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(46px,9vw,120px);line-height:.9;text-transform:uppercase}
+.ibrand b i{display:inline-block;font-style:normal;opacity:0;transform:translateY(40%);filter:blur(8px);transition:opacity .7s var(--ease),transform .9s var(--ease),filter .7s;transition-delay:calc(var(--i)*45ms + .25s)}
+.ibrand small{display:inline-block;margin-top:14px;background:var(--cu);color:#fff;font-weight:800;font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:6px 12px;opacity:0;transition:opacity .8s .9s}
+#intro.brand .ibrand svg path,#intro.brand .ibrand svg ellipse{stroke-dashoffset:0}
+#intro.brand .ibrand b i{opacity:1;transform:none;filter:none}
+#intro.brand .ibrand small,#intro.brand .ibrand svg{opacity:1}
+#intro.brand .isteps,#intro.brand .icap{opacity:0}
+.ibar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--cu)}
+.skip{position:absolute;bottom:22px;right:22px;background:var(--ink);border:0;color:var(--bone);padding:10px 16px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.skip:hover{background:var(--cu)}
+@media(max-width:520px){.isteps span{padding:7px 9px;font-size:11px}.isteps b{margin-right:5px}}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+nav.solid{background:rgba(244,237,229,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,19,16,.08)}
+nav .wrap{display:flex;align-items:center;gap:28px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;line-height:1}
+.logo svg{width:38px;height:38px}
+.logo b{display:block;font-weight:900;font-stretch:88%;font-size:20px;text-transform:uppercase;letter-spacing:.01em}
+.logo small{display:block;font-weight:700;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cu-d);margin-top:3px}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-weight:600;font-size:15px}
+.nav-links a{opacity:.75;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--cu-d)}
+nav .btn{min-height:44px;padding:0 18px;font-size:13px}
+@media(max-width:940px){.nav-links{display:none}nav .btn{margin-left:auto}}
+@media(max-width:400px){.logo small{display:none}nav .btn{padding:0 14px}}
+
+/* ---------- HERO ---------- */
+.hero{padding:132px 0 96px;position:relative;overflow:hidden;isolation:isolate}
+.hero::after{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:var(--ink);z-index:-1}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(50px,7.4vw,108px);margin:22px 0 0}
+.lead{font-size:clamp(17px,1.5vw,19.5px);color:#4a3d35;max-width:31em;margin-top:26px}
+.lead strong{color:var(--ink)}
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.creds{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:34px;font-size:14px;font-weight:700;color:var(--mut)}
+.creds span{display:flex;align-items:center;gap:8px}
+.creds span::before{content:"";width:8px;height:8px;background:var(--cu)}
+.shot{position:relative;margin:0 20px 20px 0}
+.shot::before{content:"";position:absolute;inset:20px -20px -20px 20px;background:var(--cu)}
+.shot video{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;background:#2a1f1a}
+.shot figcaption{position:absolute;left:-22px;bottom:30px;max-width:80%;background:var(--bone);padding:14px 16px;font-size:14px;line-height:1.45;border-left:4px solid var(--cu)}
+.shot figcaption b{display:block;font-weight:900;font-stretch:90%;text-transform:uppercase;font-size:16px}
+@media(max-width:900px){.hero{padding-top:112px}.hero .wrap{grid-template-columns:1fr;gap:44px}.hero::after{top:auto;height:300px;width:100%}.shot{max-width:480px}.shot video{aspect-ratio:4/4.4}.shot figcaption{left:12px}}
+
+/* scrolling band */
+.band{background:var(--cu);color:#fff;overflow:hidden}
+.band div{display:flex;width:max-content;animation:roll 34s linear infinite}
+.band span{font-weight:900;font-stretch:88%;font-size:clamp(22px,2.8vw,36px);line-height:1;text-transform:uppercase;padding:20px 0;white-space:nowrap}
+.band span::after{content:"";display:inline-block;width:.32em;height:.32em;border-radius:50%;background:var(--ink);margin:0 .8em;vertical-align:middle}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:clamp(84px,11vw,136px) 0}
+.sh{max-width:780px;margin-bottom:54px}
+.sh h2{font-size:clamp(40px,6vw,80px);margin-top:18px}
+.sh p{color:var(--mut);margin-top:18px;max-width:35em}
+.dark{background:var(--ink);color:var(--bone)}
+.dark .sh p{color:var(--mut2)}
+
+/* warning signs: interactive checklist */
+.signs .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:start}
+.signs .sh{margin-bottom:0;position:sticky;top:110px}
+.chk{display:grid;gap:10px}
+.chk button{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:center;text-align:left;background:var(--ink2);border:2px solid transparent;padding:18px 20px;cursor:pointer;transition:background .25s,border-color .25s,transform .25s var(--ease)}
+.chk button:hover{border-color:rgba(226,176,140,.35)}
+.chk button:active{transform:scale(.99)}
+.chk .box{width:42px;height:42px;border:2px solid var(--mut2);display:grid;place-items:center;transition:background .25s,border-color .25s}
+.chk .box svg{width:22px;height:22px;stroke:var(--ink);stroke-width:3;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease)}
+.chk b{display:block;font-weight:800;font-size:17.5px}
+.chk small{display:block;color:var(--mut2);font-size:14.5px;margin-top:2px}
+.chk button[aria-pressed=true]{background:#3a2a22;border-color:var(--cu)}
+.chk button[aria-pressed=true] .box{background:var(--cu-l);border-color:var(--cu-l)}
+.chk button[aria-pressed=true] .box svg{stroke-dashoffset:0}
+.result{margin-top:16px;background:var(--cu);color:#fff;padding:24px 22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.result p{font-weight:700;font-size:17px;max-width:24em}
+.result p b{font-weight:900;font-size:22px;display:block;text-transform:uppercase;font-stretch:90%}
+.result .btn{min-height:46px}
+.result.off .btn{display:none}
+@media(max-width:900px){.signs .wrap{grid-template-columns:1fr;gap:36px}.signs .sh{position:static}}
+
+/* he / she */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.duo article{background:#fff;padding:36px 32px 34px;border-top:6px solid var(--ink);min-width:0}
+.duo article.she{border-top-color:var(--cu)}
+.duo h3{font-weight:900;font-stretch:88%;font-size:clamp(34px,4vw,52px);line-height:.95;text-transform:uppercase;margin:16px 0 18px}
+.duo ul{list-style:none;display:grid;gap:12px}
+.duo li{display:grid;grid-template-columns:22px 1fr;gap:12px;color:#4a3d35}
+.duo li::before{content:"";width:12px;height:2px;background:var(--cu);margin-top:13px}
+.duo li b{color:var(--ink)}
+@media(max-width:760px){.duo{grid-template-columns:1fr}}
+
+/* treatments */
+.trt{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.trt>*{min-width:0}
+.trt article{background:var(--ink2);padding:30px 26px;grid-column:span 4;display:flex;flex-direction:column}
+.trt .n{font-weight:900;font-stretch:88%;font-size:15px;letter-spacing:.1em;color:var(--cu-l)}
+.trt h3{font-weight:900;font-stretch:88%;font-size:clamp(26px,2.5vw,34px);line-height:1;text-transform:uppercase;margin:14px 0 12px}
+.trt p{color:var(--mut2);font-size:15.5px}
+.trt .media{grid-column:span 6;padding:0;position:relative;background:#000;min-height:420px}
+.trt .media video,.trt .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
+.trt .media .cap{position:absolute;left:0;right:0;bottom:0;padding:70px 26px 26px;background:linear-gradient(transparent,rgba(20,14,11,.92))}
+.trt .media .cap h3{margin-top:10px}
+.trt .feat{grid-column:span 6;background:var(--cu);color:#fff}
+.trt .feat p{color:#fff3ea}
+.trt .feat .btn{margin-top:auto;align-self:flex-start}
+.trt .feat p+.btn{margin-top:24px}
+@media(max-width:980px){.trt article,.trt .media,.trt .feat{grid-column:span 6}}
+@media(max-width:640px){.trt article,.trt .media,.trt .feat{grid-column:1/-1}.trt .media{min-height:360px}}
+
+/* consultation steps */
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.steps4 article{border-top:2px solid var(--ink);padding-top:22px}
+.steps4 .n{font-weight:900;font-stretch:88%;font-size:72px;line-height:.9;color:var(--cu)}
+.steps4 h3{font-weight:900;font-stretch:90%;font-size:22px;text-transform:uppercase;margin:14px 0 8px}
+.steps4 p{color:var(--mut);font-size:15.5px}
+@media(max-width:900px){.steps4{grid-template-columns:1fr 1fr;row-gap:36px}}
+@media(max-width:520px){.steps4{grid-template-columns:1fr}}
+
+/* videos */
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.vid{position:relative;aspect-ratio:9/16;background:#2a1f1a;overflow:hidden;cursor:pointer;border:0;padding:0;text-align:left;min-width:0}
+.vid video{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.vid:hover video{transform:scale(1.03)}
+.vid .q{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 18px;background:linear-gradient(transparent,rgba(20,14,11,.9));color:#fff;transition:opacity .3s}
+.vid .q b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(20px,1.9vw,25px);line-height:1;text-transform:uppercase}
+.vid .q small{display:block;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-l);margin-bottom:8px}
+.vid .play{position:absolute;top:16px;right:16px;width:50px;height:50px;background:var(--cu);display:grid;place-items:center;transition:transform .3s var(--ease),background .2s}
+.vid .play svg{width:18px;height:18px;fill:#fff}
+.vid:hover .play{transform:scale(1.08)}
+.vid.on .q{opacity:0}
+.vid.on .play{background:var(--ink)}
+@media(max-width:980px){.vids{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.vids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -24px;padding:0 24px;gap:12px;scrollbar-width:none}.vids::-webkit-scrollbar{display:none}.vid{flex:0 0 72%;scroll-snap-align:center}}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
+.about figure{position:relative;margin:0 20px 20px 0}
+.about figure::before{content:"";position:absolute;inset:20px -20px -20px 20px;background:var(--ink)}
+.about img{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%}
+.about h2{font-size:clamp(40px,5.4vw,72px);margin:18px 0 22px}
+.about p{color:#4a3d35;margin-top:14px;max-width:34em}
+.quote{margin-top:28px;border-left:4px solid var(--cu);padding:6px 0 6px 20px;font-weight:800;font-size:clamp(20px,2vw,25px);line-height:1.25;font-stretch:92%}
+@media(max-width:900px){.about .wrap{grid-template-columns:1fr;gap:44px}.about figure{max-width:420px}}
+
+/* reviews */
+.rev-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.rev-head .sh{margin-bottom:0}
+.score{display:flex;align-items:center;gap:16px;background:var(--bone);color:var(--ink);padding:16px 22px}
+.score b{font-weight:900;font-stretch:88%;font-size:54px;line-height:1}
+.stars{color:var(--cu);letter-spacing:2px;font-size:20px}
+.score small{display:block;font-size:13px;color:var(--mut);font-weight:600}
+.lnk-g{display:inline-block;margin-top:4px;font-weight:800;font-size:13px;color:var(--cu-d);border-bottom:2px solid currentColor}
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.revs blockquote{background:var(--ink2);padding:30px 26px;display:flex;flex-direction:column;gap:20px;min-width:0}
+.revs p{font-size:17px;line-height:1.55}
+.revs cite{margin-top:auto;font-style:normal;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-l)}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+
+/* final call */
+.call{background:var(--cu);color:#fff;padding:clamp(90px,12vw,150px) 0}
+.call .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:end}
+.call h2{font-size:clamp(46px,8vw,118px)}
+.call h2 em{color:var(--ink);font-style:italic}
+.call p{font-size:19px;font-weight:600;margin:24px 0 34px;max-width:28em}
+.where{background:var(--ink);color:var(--bone);padding:28px 26px}
+.where h3{font-weight:900;font-stretch:90%;font-size:22px;text-transform:uppercase;margin-bottom:10px}
+.where p{font-size:16px;font-weight:500;margin:0 0 18px;color:var(--mut2)}
+.where a.lnk{display:inline-flex;gap:8px;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-l);border-bottom:2px solid currentColor;padding-bottom:3px}
+@media(max-width:900px){.call .wrap{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:var(--mut2);padding:30px 0 104px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a:hover{color:var(--cu-l)}
+
+.wa{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s}
+.wa:hover{transform:scale(1.07)}
+.wa svg{width:30px;height:30px;fill:#fff}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--cu);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="lock">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path pathLength="1" d="M46 44C40 18 16 6 9 16C3 26 18 42 42 50M42 52C24 54 17 68 25 75C32 81 42 70 46 60"/>
+      <path pathLength="1" d="M54 44C60 18 84 6 91 16C97 26 82 42 58 50M58 52C76 54 83 68 75 75C68 81 58 70 54 60"/>
+      <path pathLength="1" d="M52 14C47 30 50 50 50 64"/>
+      <path pathLength="1" d="M41 70C41 84 59 84 59 70"/>
+    </g>
+    <ellipse cx="50" cy="71" rx="4.2" ry="7" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div id="intro" aria-hidden="true">
+  <canvas id="hair"></canvas>
+  <div class="isteps"><span class="on"><b>1</b>Raiz</span><span><b>2</b>Crescimento</span><span><b>3</b>Fio saudável</span></div>
+  <p class="icap" id="icap">Tudo começa no folículo</p>
+  <div class="ibrand">
+    <svg viewBox="0 0 100 100" style="color:var(--cu)"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M46 44C40 18 16 6 9 16C3 26 18 42 42 50M42 52C24 54 17 68 25 75C32 81 42 70 46 60"/><path pathLength="1" d="M54 44C60 18 84 6 91 16C97 26 82 42 58 50M58 52C76 54 83 68 75 75C68 81 58 70 54 60"/><path pathLength="1" d="M52 14C47 30 50 50 50 64"/><path pathLength="1" d="M41 70C41 84 59 84 59 70"/></g><ellipse pathLength="1" cx="50" cy="71" rx="4.2" ry="7" fill="currentColor" stroke="currentColor" stroke-width="1"/></svg>
+    <b><i style="--i:0">D</i><i style="--i:1">é</i><i style="--i:2">b</i><i style="--i:3">o</i><i style="--i:4">r</i><i style="--i:5">a</i> <i style="--i:7">B</i><i style="--i:8">a</i><i style="--i:9">l</i><i style="--i:10">d</i><i style="--i:11">i</i><i style="--i:12">n</i></b>
+    <small>Tricologia</small>
+  </div>
+  <div class="ibar" id="ibar"></div>
+  <button class="skip" id="skip">Pular</button>
+</div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Débora Baldin, início"><svg style="color:var(--cu)"><use href="#mark"/></svg><span><b>Débora Baldin</b><small>Biomédica tricologista</small></span></a>
+    <div class="nav-links"><a href="#sinais">Sinais</a><a href="#tratamentos">Tratamentos</a><a href="#consulta">A consulta</a><a href="#duvidas">Dúvidas</a><a href="#sobre">Sobre</a></div>
+    <a class="btn cu" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20capilar." target="_blank" rel="noopener">Agendar</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag">Queda de cabelo e calvície · Americana-SP</span>
+      <h1 class="big">Seu cabelo<br>começa<br><em>na raiz.</em></h1>
+      <p class="lead">Antes de trocar de shampoo de novo, descubra <strong>por que</strong> os fios estão caindo. A Débora investiga a causa com tricoscopia e monta um tratamento só seu, para ele e para ela, <strong>com acolhimento e ciência</strong>.</p>
+      <div class="acts">
+        <a class="btn cu" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20capilar." target="_blank" rel="noopener">Agendar avaliação</a>
+        <a class="btn out" href="#sinais">Fazer o teste rápido</a>
+      </div>
+      <div class="creds"><span>CRBM 15421</span><span>5,0 no Google</span><span>Tricoscopia digital</span></div>
+    </div>
+    <figure class="shot rv">
+      <video id="heroVid" muted loop playsinline preload="none" poster="media/hero.webp"><source src="media/hero.mp4" type="video/mp4"></video>
+      <figcaption><b>Débora Baldin</b>Biomédica e tricologista, no consultório em Americana.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<div class="band" aria-hidden="true"><div>
+  <span>Queda de cabelo</span><span>Calvície</span><span>Tricoscopia</span><span>Falhas na barba</span><span>Laser capilar</span><span>Microagulhamento</span>
+  <span>Queda de cabelo</span><span>Calvície</span><span>Tricoscopia</span><span>Falhas na barba</span><span>Laser capilar</span><span>Microagulhamento</span>
+</div></div>
+
+<section class="dark signs" id="sinais">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="tag cu">Teste rápido</span>
+      <h2 class="big">A sua queda <em>não começou hoje.</em></h2>
+      <p>Perder alguns fios por dia é normal. Estes sinais, não. Marque o que você tem percebido no espelho, no ralo ou no travesseiro.</p>
+    </div>
+    <div class="rv">
+      <div class="chk" id="chk">
+        <button aria-pressed="false" data-s="Queda há mais de 3 meses"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Queda há mais de 3 meses</b><small>O ralo e a escova continuam cheios, mês após mês.</small></span></button>
+        <button aria-pressed="false" data-s="Volume menor"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Rabo de cavalo mais fino</b><small>O elástico dá uma volta a mais do que dava.</small></span></button>
+        <button aria-pressed="false" data-s="Couro cabeludo aparente"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Couro cabeludo aparecendo</b><small>Risca central mais larga ou coroa abrindo na luz.</small></span></button>
+        <button aria-pressed="false" data-s="Entradas aumentando"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Entradas avançando</b><small>A linha da testa está subindo nas fotos.</small></span></button>
+        <button aria-pressed="false" data-s="Fios mais finos"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Fios mais finos e fracos</b><small>Crescem menos e quebram com facilidade.</small></span></button>
+        <button aria-pressed="false" data-s="Falhas na barba"><span class="box"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span><b>Falhas na barba</b><small>Pontos sem pelo que não fecham.</small></span></button>
+      </div>
+      <div class="result off" id="result" aria-live="polite">
+        <p id="resTxt"><b>Nenhum sinal marcado</b>Toque nos itens que combinam com você.</p>
+        <a class="btn ink" id="resBtn" href="#" target="_blank" rel="noopener">Mandar para a Débora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ele-ela">
+  <div class="wrap">
+    <div class="sh rv"><span class="tag">Para ele e para ela</span><h2 class="big">Causas diferentes. <em>Mesmo cuidado.</em></h2><p>A queda masculina e a feminina têm gatilhos diferentes. Por isso não existe protocolo de prateleira: cada caso começa pela investigação.</p></div>
+    <div class="duo">
+      <article class="she rv"><span class="tag cu">Ela</span><h3>Volume que foi embora</h3>
+        <ul><li><span><b>Alterações hormonais</b> e queda no pós-parto.</span></li><li><span><b>Estresse e nutrientes</b> em falta, que aceleram a queda.</span></li><li><span><b>Afinamento progressivo</b> e risca central abrindo.</span></li><li><span><b>Frizz e quebra</b>, entendendo a causa e não só o fio.</span></li></ul>
+      </article>
+      <article class="rv"><span class="tag">Ele</span><h3>Entradas, coroa e barba</h3>
+        <ul><li><span><b>Calvície genética</b>, que tem tempo certo para ser tratada.</span></li><li><span><b>Entradas e coroa</b> abrindo aos poucos.</span></li><li><span><b>Falhas na barba</b> com baixa densidade de fios.</span></li><li><span><b>Minoxidil e afins</b>: quando faz sentido, e quando não.</span></li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="tratamentos">
+  <div class="wrap">
+    <div class="sh rv"><span class="tag cu">Tratamentos</span><h2 class="big">Tecnologia a favor <em>dos seus fios.</em></h2><p>Cada protocolo é definido depois da avaliação, de acordo com a causa da queda e o estágio de cada caso.</p></div>
+    <div class="trt">
+      <article class="rv"><span class="n">01</span><h3>Avaliação com tricoscopia</h3><p>Uma lente de aumento mostra o couro cabeludo e a raiz de perto: densidade, espessura dos fios e sinais de inflamação.</p></article>
+      <article class="rv"><span class="n">02</span><h3>Microagulhamento capilar</h3><p>Estimula a regeneração, melhora a circulação local e favorece a absorção dos ativos. Também para falhas na barba.</p></article>
+      <article class="rv"><span class="n">03</span><h3>Laser de baixa intensidade</h3><p>O capacete de laser estimula a atividade celular dos folículos e ajuda no crescimento e na saúde dos fios.</p></article>
+      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/laser.webp"><source src="media/laser.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">No consultório</span><h3>Capacete de laser</h3></div></figure>
+      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/microagulhamento.webp"><source src="media/micro.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">Na prática</span><h3>Microagulhamento até a raiz</h3></div></figure>
+      <article class="rv"><span class="n">04</span><h3>Biorressonância</h3><p>Recurso complementar oferecido no consultório. Na avaliação a Débora explica se ele faz sentido para o seu caso.</p></article>
+      <article class="feat rv" style="grid-column:span 8"><span class="n" style="color:#fff">05</span><h3>Acompanhamento de verdade</h3><p>Fotos e tricoscopia de controle a cada etapa, para você ver a evolução e ajustar o tratamento com base em dados, não em tentativa e erro.</p><a class="btn ink" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20saber%20mais%20sobre%20os%20tratamentos." target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="consulta">
+  <div class="wrap">
+    <div class="sh rv"><span class="tag">A consulta</span><h2 class="big">Primeiro a causa. <em>Depois o tratamento.</em></h2></div>
+    <div class="steps4">
+      <article class="rv"><span class="n">01</span><h3>Escuta</h3><p>Sua história, rotina, alimentação, hormônios e tudo o que você já tentou.</p></article>
+      <article class="rv"><span class="n">02</span><h3>Tricoscopia</h3><p>O couro cabeludo visto de perto, com imagens que você acompanha na tela.</p></article>
+      <article class="rv"><span class="n">03</span><h3>Diagnóstico</h3><p>Explicação clara do que está acontecendo e do que pode ser feito.</p></article>
+      <article class="rv"><span class="n">04</span><h3>Plano</h3><p>Protocolo individual, com etapas e reavaliações combinadas.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="duvidas">
+  <div class="wrap">
+    <div class="sh rv"><span class="tag cu">Dúvidas</span><h2 class="big">A Débora <em>responde.</em></h2><p>Mitos e verdades sobre cabelo, direto do Instagram. Toque para assistir com som.</p></div>
+    <div class="vids">
+      <button class="vid rv" aria-label="Assistir: posso lavar o cabelo todos os dias?"><video playsinline preload="none" poster="media/lavar.webp"><source src="media/lavar.mp4" type="video/mp4"></video><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span><span class="q"><small>Rotina</small><b>Posso lavar todos os dias?</b></span></button>
+      <button class="vid rv" aria-label="Assistir: por que meu cabelo tem frizz?"><video playsinline preload="none" poster="media/frizz.webp"><source src="media/frizz.mp4" type="video/mp4"></video><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span><span class="q"><small>Fios</small><b>Frizz é falta de cuidado?</b></span></button>
+      <button class="vid rv" aria-label="Assistir: cortar o cabelo faz crescer?"><video playsinline preload="none" poster="media/cortar.webp"><source src="media/cortar.mp4" type="video/mp4"></video><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span><span class="q"><small>Mito</small><b>Cortar faz crescer?</b></span></button>
+      <button class="vid rv" aria-label="Assistir: minoxidil funciona?"><video playsinline preload="none" poster="media/minoxidil.webp"><source src="media/minoxidil.mp4" type="video/mp4"></video><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span><span class="q"><small>Tratamento</small><b>Minoxidil funciona?</b></span></button>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap">
+    <figure class="rv"><img src="media/debora.webp" alt="Débora Baldin de jaleco branco no consultório" loading="lazy" decoding="async"></figure>
+    <div class="rv">
+      <span class="tag cu">Quem cuida de você</span>
+      <h2 class="big">Débora <em>Baldin</em></h2>
+      <p>Biomédica (CRBM 15421-SP), pós-graduada em estética e tricologia. Especialista em queda de cabelo e calvície, atende em Americana-SP.</p>
+      <p>Muita gente chega depois de anos de vitaminas aleatórias, shampoo novo e fórmula milagrosa. O trabalho dela começa justamente aí: entender a causa real e dar um caminho claro.</p>
+      <p class="quote">“Cuido dos meus pacientes com acolhimento e ciência.”</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="avaliacoes">
+  <div class="wrap">
+    <div class="rev-head">
+      <div class="sh rv"><span class="tag cu">Avaliações</span><h2 class="big">Quem já <em>passou por aqui.</em></h2></div>
+      <div class="score rv"><b>5,0</b><span><span class="stars" aria-label="5 de 5 estrelas">★★★★★</span><small>Avaliações no Google</small><a class="lnk-g" href="https://www.google.com/maps/search/?api=1&query=Biomedicina%20%26%20Tricologia%20D%C3%A9bora%20Baldin%20Americana" target="_blank" rel="noopener">Ver todas no Google →</a></span></div>
+    </div>
+    <div class="revs">
+      <blockquote class="rv"><p>“A Débora é uma excelente profissional! Achei o atendimento extremamente humanizado e de muita escuta. Estou bem animada para fazer o tratamento indicado por ela!”</p><cite>Paula Monteiro</cite></blockquote>
+      <blockquote class="rv"><p>“Explica muito bem o tratamento, ambiente tranquilo e acolhedor, além de ser uma pessoa muito simpática, coerente e ótima profissional.”</p><cite>Mayne Melicio</cite></blockquote>
+      <blockquote class="rv"><p>“Profissional atenciosa e dedicada. Gostei muito da minha primeira consulta, com explicação objetiva e clara. Recomendo.”</p><cite>Andréia</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="call" id="agenda">
+  <div class="wrap">
+    <div class="rv">
+      <span class="tag">Agenda aberta</span>
+      <h2 class="big" style="margin-top:22px">Não espere<br>a queda <em>piorar.</em></h2>
+      <p>Quanto antes a causa é encontrada, mais fios dá para preservar. Chame no WhatsApp e agende sua avaliação capilar.</p>
+      <div class="acts">
+        <a class="btn ink" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20capilar." target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Agendar no WhatsApp</a>
+        <a class="btn out-l" href="https://www.instagram.com/deborabaldin.tricologia/" target="_blank" rel="noopener">@deborabaldin.tricologia</a>
+      </div>
+    </div>
+    <div class="where rv">
+      <h3>Onde atende</h3>
+      <p>Espaço Shiva<br>R. Niels Nielsen, 150 · Vila Medon<br>Americana-SP · 13465-170<br>(19) 97129-5296</p>
+      <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Biomedicina%20%26%20Tricologia%20D%C3%A9bora%20Baldin%20Americana" target="_blank" rel="noopener">Abrir no mapa →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Débora Baldin · Biomédica e Tricologista · CRBM 15421 · Americana-SP</span>
+    <span>Site por <a href="https://www.hgsdev.com.br" target="_blank" rel="noopener">HGS Dev</a></span>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20capilar." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a>
+
+<script>
+const WA='https://wa.me/5519971295296?text=';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- intro: hair growing from the follicles of two profiles ----------
+const intro=document.getElementById('intro');
+let ended=false;
+function endIntro(){if(ended)return;ended=true;scrollTo(0,0);intro.classList.add('out');document.body.classList.remove('lock');boot();setTimeout(()=>intro.remove(),1000)}
+let seen=false;try{seen=!!sessionStorage.getItem('db-intro')}catch(e){}
+if(seen||reduce){intro.remove();document.body.classList.remove('lock');addEventListener('DOMContentLoaded',boot)}
+else{
+  try{sessionStorage.setItem('db-intro','1')}catch(e){}
+  history.scrollRestoration='manual';
+  document.getElementById('skip').onclick=endIntro;
+  runIntro();
+}
+
+function runIntro(){
+  const cv=document.getElementById('hair'),ctx=cv.getContext('2d');
+  const steps=[...intro.querySelectorAll('.isteps span')],cap=document.getElementById('icap'),bar=document.getElementById('ibar');
+  let W,H,dpr,S,ox,oy,sceneW;
+  // head profile facing right, in a 360x380 local box
+  const HEAD=new Path2D('M66 372C66 330 56 300 46 235C36 150 78 62 170 55C240 50 284 98 288 140L292 172C300 186 312 205 318 224L301 234L303 249L297 257L301 269C297 290 286 304 266 310C246 314 226 302 216 310L212 372');
+  const EYE=new Path2D('M258 160C265 166 274 166 280 161');
+  const EAR=new Path2D('M176 200C164 196 160 214 166 228C170 238 180 240 186 236');
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  const bez=(p,t)=>{const u=1-t;return[u*u*u*p[0]+3*u*u*t*p[2]+3*u*t*t*p[4]+t*t*t*p[6],u*u*u*p[1]+3*u*u*t*p[3]+3*u*t*t*p[5]+t*t*t*p[7]]};
+  const SCALP=[[46,235,36,150,78,62,170,55],[170,55,240,50,284,98,288,140]];
+  const C=[168,200];
+  function scalpPoint(tMax){ // random root on the scalp curve, normal pointing outward
+    const t=Math.random()*tMax,seg=t<1?0:1,p=bez(SCALP[seg],seg?t-1:t);
+    const a=Math.atan2(p[1]-C[1],p[0]-C[0]);
+    return{x:p[0]+Math.cos(a)*rnd(-4,1),y:p[1]+Math.sin(a)*rnd(-4,1),a,t};
+  }
+  const strands=[];
+  // she: long hair falling back and down over the shoulders
+  const SHE=['#7a4a2e','#9a6240','#b97f55','#d4a275','#5e3a26'];
+  for(let i=0;i<1500;i++){
+    const r=scalpPoint(1.88),back=1-r.t/1.88;
+    strands.push({who:1,x:r.x,y:r.y,a0:r.a-1.1+back*.6,target:Math.PI/2+.45+back*.2-Math.PI*2,pull:rnd(.16,.24),len:rnd(240,320)*(.6+back*.5),segs:16,col:(Math.random()*SHE.length)|0,w:rnd(.7,1.5),delay:rnd(0,.7),dur:rnd(1.6,2.1),ph:rnd(0,6.28),amp:rnd(.02,.05)});
+  }
+  // he: short hair swept back, plus beard and moustache
+  const HE=['#2b1c14','#3d291d','#53382a','#1d130e'];
+  for(let i=0;i<1300;i++){
+    const r=scalpPoint(1.82);
+    strands.push({who:0,x:r.x,y:r.y,a0:r.a-1.15,target:Math.PI*.9-Math.PI*2,pull:rnd(.04,.08),len:rnd(14,26),segs:5,col:(Math.random()*HE.length)|0,w:rnd(.9,1.6),delay:rnd(0,.6),dur:rnd(.8,1.1),ph:rnd(0,6.28),amp:rnd(.01,.03)});
+  }
+  for(let i=0;i<620;i++){ // beard: roots fill the jaw area between chin and ear
+    const u=Math.random(),v=Math.random();
+    const x=300-u*112+v*rnd(-6,10)*(1-u),y=268+u*-30+v*(40*(1-u)+6);
+    if(x>298&&y<270)continue;
+    strands.push({who:0,x,y,a0:Math.PI/2-.25+u*.5,target:Math.PI/2+.1,pull:.08,len:rnd(10,22),segs:4,col:(Math.random()*HE.length)|0,w:rnd(.8,1.4),delay:rnd(1,1.6),dur:rnd(.7,1),ph:rnd(0,6.28),amp:.01});
+  }
+  for(let i=0;i<90;i++){
+    const u=Math.random();
+    strands.push({who:0,x:276+u*24,y:238+u*2,a0:Math.PI/2+.35,target:Math.PI/2+.4,pull:.1,len:rnd(8,13),segs:3,col:(Math.random()*HE.length)|0,w:rnd(.8,1.3),delay:rnd(1,1.6),dur:.8,ph:rnd(0,6.28),amp:.01});
+  }
+  strands.forEach(s=>{while(s.target>s.a0)s.target-=Math.PI*2;while(s.a0-s.target>Math.PI*2)s.target+=Math.PI*2}); // always turn back over the head, never across the face
+  const cols=[HE,SHE];
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+    cv.width=W*dpr;cv.height=H*dpr;
+    const narrow=W<720;sceneW=narrow?700:920;
+    S=Math.min(W*.94/sceneW,H*(narrow?.5:.62)/420);
+    ox=(W-sceneW*S)/2;oy=H*(narrow?.2:.14);
+  }
+  resize();addEventListener('resize',resize);
+  // local → screen: he on the left facing right, she mirrored on the right facing left
+  function head(who){return who?{m:-1,x:ox+sceneW*S}:{m:1,x:ox}}
+  function drawHead(who,k){
+    const h=head(who);
+    ctx.setTransform(dpr*S*h.m,0,0,dpr*S,dpr*h.x,dpr*oy);
+    ctx.globalAlpha=k;ctx.lineWidth=1.6/S;ctx.strokeStyle='#1b1310';ctx.lineCap='round';
+    ctx.setLineDash([2200]);ctx.lineDashOffset=2200*(1-k);
+    ctx.stroke(HEAD);ctx.setLineDash([]);
+    ctx.globalAlpha=k*.7;ctx.stroke(EYE);ctx.stroke(EAR);
+    ctx.globalAlpha=1;
+  }
+  const ease=t=>t<0?0:t>1?1:1-Math.pow(1-t,3);
+  const t0=performance.now(),END=6.6;
+  let phase=-1;
+  const caps=['Tudo começa no folículo','A raiz saudável sustenta o fio','Fios fortes, para ele e para ela'];
+  function setPhase(i){if(i===phase)return;phase=i;steps.forEach((s,k)=>{s.classList.toggle('on',k===i);s.classList.toggle('done',k<i)});cap.classList.add('swap');setTimeout(()=>{cap.textContent=caps[i];cap.classList.remove('swap')},300)}
+  function frame(now){
+    if(ended)return;
+    const t=(now-t0)/1000;
+    bar.style.width=Math.min(100,t/END*100)+'%';
+    setPhase(t<1.1?0:t<3.4?1:2);
+    if(t>4.5&&!intro.classList.contains('brand'))intro.classList.add('brand');
+    ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);
+    const fade=t>4.5?Math.max(.18,1-(t-4.5)*.9):1;
+    drawHead(0,ease(t/1.1)*fade);drawHead(1,ease((t-.15)/1.1)*fade);
+    const grow=t-1.0,sweep=(t-3.3)/1.1; // shine sweep runs across the scene in local x
+    for(const who of[0,1]){
+      const h=head(who);
+      ctx.setTransform(dpr*S*h.m,0,0,dpr*S,dpr*h.x,dpr*oy);
+      ctx.lineCap='round';
+      // follicles: dots that pulse before the hair appears
+      if(t>.5&&t<2.4){
+        ctx.globalAlpha=Math.min(1,(t-.5)*2)*Math.max(0,1-(t-1.6)*1.25)*fade;ctx.fillStyle='#b8744f';
+        for(let i=who;i<strands.length;i+=7){const s=strands[i];if(s.who===who)ctx.fillRect(s.x-1.4,s.y-1.4,2.8,2.8)}
+      }
+      const pal=cols[who],paths=pal.map(()=>new Path2D()),shine=new Path2D();
+      for(const s of strands){
+        if(s.who!==who)continue;
+        const g=ease((grow-s.delay)/s.dur);if(g<=0)continue;
+        const p=paths[s.col],n=s.segs*g,step=s.len/s.segs;
+        let x=s.x,y=s.y,a=s.a0;p.moveTo(x,y);
+        const lit=sweep>0&&sweep<1.3&&Math.abs(s.x/360-sweep*1.1+.1)<.12;
+        if(lit)shine.moveTo(x,y);
+        for(let k=0;k<n;k++){
+          const f=Math.min(1,n-k);
+          a+=(s.target-a)*s.pull*1.6+Math.sin(t*1.7+s.ph+k*.4)*s.amp*(k/s.segs);
+          x+=Math.cos(a)*step*f;y+=Math.sin(a)*step*f;
+          p.lineTo(x,y);if(lit)shine.lineTo(x,y);
+        }
+      }
+      pal.forEach((c,i)=>{ctx.globalAlpha=fade;ctx.strokeStyle=c;ctx.lineWidth=who?1.05:1.25;ctx.stroke(paths[i])});
+      ctx.globalAlpha=.7*fade;ctx.strokeStyle=who?'#f3d3ae':'#a0765a';ctx.lineWidth=1.2;ctx.stroke(shine);
+    }
+    ctx.globalAlpha=1;
+    if(t<END)requestAnimationFrame(frame);else endIntro();
+  }
+  requestAnimationFrame(frame);
+}
+
+// ---------- page ----------
+let booted=false;
+function boot(){
+  if(booted)return;booted=true;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  if(!reduce){
+    // muted loops play only while on screen
+    const vo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.play().catch(()=>{});else e.target.pause()}),{threshold:.25});
+    [document.getElementById('heroVid'),...document.querySelectorAll('video.auto')].forEach(v=>vo.observe(v));
+  }
+}
+
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+
+// warning-signs checklist → prefilled WhatsApp message
+const chk=[...document.querySelectorAll('#chk button')],result=document.getElementById('result'),resTxt=document.getElementById('resTxt'),resBtn=document.getElementById('resBtn');
+chk.forEach(b=>b.onclick=()=>{
+  b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');
+  const on=chk.filter(x=>x.getAttribute('aria-pressed')==='true').map(x=>x.dataset.s);
+  result.classList.toggle('off',!on.length);
+  resTxt.innerHTML=!on.length?'<b>Nenhum sinal marcado</b>Toque nos itens que combinam com você.'
+    :`<b>${on.length} ${on.length>1?'sinais':'sinal'} de alerta</b>${on.length>1?'Vale':'Já vale'} investigar a causa numa avaliação capilar.`;
+  resBtn.href=WA+encodeURIComponent(`Olá Débora! Fiz o teste no site e percebi: ${on.join(', ').toLowerCase()}. Quero agendar uma avaliação.`);
+});
+
+// Q&A reels: tap to play with sound, one at a time
+const vids=[...document.querySelectorAll('.vid')];
+vids.forEach(b=>{const v=b.querySelector('video');
+  b.onclick=()=>{
+    if(!v.paused){v.pause();return}
+    vids.forEach(o=>{if(o!==b){o.querySelector('video').pause()}});
+    v.play().catch(()=>{});
+  };
+  v.onplay=()=>b.classList.add('on');v.onpause=()=>b.classList.remove('on');v.onended=()=>{b.classList.remove('on');v.load()};
+});
+</script>
+</body>
+</html>
