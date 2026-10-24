@@ -27,6 +27,7 @@ body{background:var(--bone);color:var(--ink);font:17px/1.6 Archivo,system-ui,san
 body.lock{overflow:hidden}
 a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
+h1,h2,h3,b{overflow-wrap:break-word;hyphens:auto}
 button{font:inherit;color:inherit}
 ::selection{background:var(--cu);color:#fff}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
@@ -47,32 +48,23 @@ button{font:inherit;color:inherit}
 .btn.out-l:hover{background:var(--bone);color:var(--ink)}
 .btn svg{width:20px;height:20px;fill:currentColor}
 
-/* ---------- INTRO: hair growing on two profiles, drawn on canvas ---------- */
-#intro{position:fixed;inset:0;z-index:100;background:var(--bone);overflow:hidden;transition:opacity 1s var(--ease),visibility 1s}
+/* ---------- INTRO: two hair locks drawn in, a shine, then the page fades in ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:var(--bone);display:grid;place-items:center;transition:opacity 1s var(--ease),visibility 1s}
 #intro.out{opacity:0;visibility:hidden}
-#hair{position:absolute;inset:0;width:100%;height:100%}
-.isteps{position:absolute;top:max(22px,4vh);left:50%;transform:translateX(-50%);display:flex;gap:4px;transition:opacity .5s}
-.isteps span{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;background:var(--bone2);color:var(--mut);white-space:nowrap;transition:background .35s,color .35s}
-.isteps span.on{background:var(--ink);color:var(--bone)}
-.isteps span.done{color:var(--ink)}
-.isteps b{margin-right:8px;color:var(--cu)}
-.icap{position:absolute;left:0;right:0;bottom:max(64px,10vh);text-align:center;font-weight:900;font-stretch:88%;font-size:clamp(22px,3.4vw,40px);line-height:1.05;text-transform:uppercase;padding:0 24px;transition:opacity .35s,transform .35s}
-.icap.swap{opacity:0;transform:translateY(6px)}
-.ibrand{position:absolute;left:0;right:0;bottom:max(48px,8vh);text-align:center;pointer-events:none}
-.ibrand svg{opacity:0;transition:opacity .6s;width:clamp(70px,9vw,110px);height:auto;margin:0 auto 10px;overflow:visible}
-.ibrand svg path,.ibrand svg ellipse{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease)}
-.ibrand b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(46px,9vw,120px);line-height:.9;text-transform:uppercase}
-.ibrand b i{display:inline-block;font-style:normal;opacity:0;transform:translateY(40%);filter:blur(8px);transition:opacity .7s var(--ease),transform .9s var(--ease),filter .7s;transition-delay:calc(var(--i)*45ms + .25s)}
-.ibrand small{display:inline-block;margin-top:14px;background:var(--cu);color:#fff;font-weight:800;font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:6px 12px;opacity:0;transition:opacity .8s .9s}
-#intro.brand .ibrand svg path,#intro.brand .ibrand svg ellipse{stroke-dashoffset:0}
-#intro.brand .ibrand b i{opacity:1;transform:none;filter:none}
-#intro.brand .ibrand small,#intro.brand .ibrand svg{opacity:1}
-#intro.brand .isteps,#intro.brand .icap{opacity:0}
-.ibar{position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--cu)}
+.istage{width:min(760px,92vw);text-align:center}
+.istage svg{width:100%;height:auto;display:block;overflow:visible}
+.locks path{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease);transition-delay:var(--d)}
+#intro.draw .locks path{stroke-dashoffset:0}
+.ilbl{font:800 13px Archivo;letter-spacing:.24em;text-transform:uppercase;fill:var(--mut);opacity:0;transition:opacity .8s 1.2s}
+#intro.draw .ilbl{opacity:1}
+.ibrand{margin-top:clamp(18px,4vh,40px);opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.ibrand b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(40px,7.5vw,96px);line-height:.9;text-transform:uppercase}
+.ibrand small{display:inline-block;margin-top:14px;background:var(--cu);color:#fff;font-weight:800;font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:6px 12px}
+#intro.brand .ibrand{opacity:1;transform:none}
 .skip{position:absolute;bottom:22px;right:22px;background:var(--ink);border:0;color:var(--bone);padding:10px 16px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .skip:hover{background:var(--cu)}
-@media(max-width:520px){.isteps span{padding:7px 9px;font-size:11px}.isteps b{margin-right:5px}}
-
+#page{opacity:0;transition:opacity 1.2s var(--ease)}
+body.ready #page{opacity:1}
 /* ---------- NAV ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
 nav.solid{background:rgba(244,237,229,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,19,16,.08)}
@@ -99,12 +91,16 @@ nav .btn{min-height:44px;padding:0 18px;font-size:13px}
 .creds{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:34px;font-size:14px;font-weight:700;color:var(--mut)}
 .creds span{display:flex;align-items:center;gap:8px}
 .creds span::before{content:"";width:8px;height:8px;background:var(--cu)}
-.shot{position:relative;margin:0 20px 20px 0}
+.shot{position:relative;margin:0 20px 20px 0;width:min(100%,400px);justify-self:center}
 .shot::before{content:"";position:absolute;inset:20px -20px -20px 20px;background:var(--cu)}
-.shot video{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;background:#2a1f1a}
+.shot video{position:relative;width:100%;aspect-ratio:9/16;object-fit:cover;background:#2a1f1a}
+.snd{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;background:rgba(27,19,16,.78);color:#fff;border:0;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s}
+.snd:hover,.snd[aria-pressed=true]{background:var(--cu)}
+.snd svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.snd .on{display:none}.snd[aria-pressed=true] .on{display:block}.snd[aria-pressed=true] .off{display:none}
 .shot figcaption{position:absolute;left:-22px;bottom:30px;max-width:80%;background:var(--bone);padding:14px 16px;font-size:14px;line-height:1.45;border-left:4px solid var(--cu)}
 .shot figcaption b{display:block;font-weight:900;font-stretch:90%;text-transform:uppercase;font-size:16px}
-@media(max-width:900px){.hero{padding-top:112px}.hero .wrap{grid-template-columns:1fr;gap:44px}.hero::after{top:auto;height:300px;width:100%}.shot{max-width:480px}.shot video{aspect-ratio:4/4.4}.shot figcaption{left:12px}}
+@media(max-width:900px){.hero{padding-top:112px}.hero .wrap{grid-template-columns:1fr;gap:44px}.hero::after{top:auto;height:300px;width:100%}.shot{width:min(calc(100% - 20px),380px)}.shot figcaption{left:12px}}
 
 /* scrolling band */
 .band{background:var(--cu);color:#fff;overflow:hidden}
@@ -144,9 +140,9 @@ section{padding:clamp(84px,11vw,136px) 0}
 
 /* he / she */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.duo article{background:#fff;padding:36px 32px 34px;border-top:6px solid var(--ink);min-width:0}
+.duo article{background:#fff;padding:clamp(26px,3vw,36px) clamp(22px,3vw,32px);border-top:6px solid var(--ink);min-width:0}
 .duo article.she{border-top-color:var(--cu)}
-.duo h3{font-weight:900;font-stretch:88%;font-size:clamp(34px,4vw,52px);line-height:.95;text-transform:uppercase;margin:16px 0 18px}
+.duo h3{font-weight:900;font-stretch:86%;font-size:clamp(30px,3.6vw,48px);line-height:.95;text-transform:uppercase;margin:16px 0 18px}
 .duo ul{list-style:none;display:grid;gap:12px}
 .duo li{display:grid;grid-template-columns:22px 1fr;gap:12px;color:#4a3d35}
 .duo li::before{content:"";width:12px;height:2px;background:var(--cu);margin-top:13px}
@@ -158,18 +154,19 @@ section{padding:clamp(84px,11vw,136px) 0}
 .trt>*{min-width:0}
 .trt article{background:var(--ink2);padding:30px 26px;grid-column:span 4;display:flex;flex-direction:column}
 .trt .n{font-weight:900;font-stretch:88%;font-size:15px;letter-spacing:.1em;color:var(--cu-l)}
-.trt h3{font-weight:900;font-stretch:88%;font-size:clamp(26px,2.5vw,34px);line-height:1;text-transform:uppercase;margin:14px 0 12px}
+.trt h3{font-weight:900;font-stretch:84%;font-size:clamp(23px,2.1vw,30px);line-height:1;text-transform:uppercase;margin:14px 0 12px}
 .trt p{color:var(--mut2);font-size:15.5px}
-.trt .media{grid-column:span 6;padding:0;position:relative;background:#000;min-height:420px}
+.trt .media{grid-column:span 3;padding:0;position:relative;background:#000;aspect-ratio:9/16;overflow:hidden}
 .trt .media video,.trt .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
-.trt .media .cap{position:absolute;left:0;right:0;bottom:0;padding:70px 26px 26px;background:linear-gradient(transparent,rgba(20,14,11,.92))}
+.trt .media .cap{position:absolute;left:0;right:0;bottom:0;padding:70px 20px 20px;background:linear-gradient(transparent,rgba(20,14,11,.92))}
 .trt .media .cap h3{margin-top:10px}
 .trt .feat{grid-column:span 6;background:var(--cu);color:#fff}
 .trt .feat p{color:#fff3ea}
 .trt .feat .btn{margin-top:auto;align-self:flex-start}
 .trt .feat p+.btn{margin-top:24px}
-@media(max-width:980px){.trt article,.trt .media,.trt .feat{grid-column:span 6}}
-@media(max-width:640px){.trt article,.trt .media,.trt .feat{grid-column:1/-1}.trt .media{min-height:360px}}
+.trt .wide{grid-column:span 6}
+@media(max-width:980px){.trt article,.trt .feat,.trt .wide{grid-column:span 6}.trt .media{grid-column:span 3}.trt .feat{grid-column:1/-1}}
+@media(max-width:640px){.trt article,.trt .wide,.trt .feat{grid-column:1/-1}.trt .media{grid-column:span 6}.trt .media .cap{padding:50px 12px 12px}.trt .media .cap h3{font-size:15px;hyphens:none;overflow-wrap:normal}.trt .media .tag{font-size:10px;padding:4px 8px}}
 
 /* consultation steps */
 .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
@@ -186,7 +183,7 @@ section{padding:clamp(84px,11vw,136px) 0}
 .vid video{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .vid:hover video{transform:scale(1.03)}
 .vid .q{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 18px;background:linear-gradient(transparent,rgba(20,14,11,.9));color:#fff;transition:opacity .3s}
-.vid .q b{display:block;font-weight:900;font-stretch:88%;font-size:clamp(20px,1.9vw,25px);line-height:1;text-transform:uppercase}
+.vid .q b{display:block;font-weight:900;font-stretch:86%;font-size:clamp(18px,1.7vw,23px);line-height:1;text-transform:uppercase}
 .vid .q small{display:block;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cu-l);margin-bottom:8px}
 .vid .play{position:absolute;top:16px;right:16px;width:50px;height:50px;background:var(--cu);display:grid;place-items:center;transition:transform .3s var(--ease),background .2s}
 .vid .play svg{width:18px;height:18px;fill:#fff}
@@ -207,17 +204,30 @@ section{padding:clamp(84px,11vw,136px) 0}
 @media(max-width:900px){.about .wrap{grid-template-columns:1fr;gap:44px}.about figure{max-width:420px}}
 
 /* reviews */
-.rev-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.rev-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;margin-bottom:44px}
 .rev-head .sh{margin-bottom:0}
-.score{display:flex;align-items:center;gap:16px;background:var(--bone);color:var(--ink);padding:16px 22px}
-.score b{font-weight:900;font-stretch:88%;font-size:54px;line-height:1}
-.stars{color:var(--cu);letter-spacing:2px;font-size:20px}
-.score small{display:block;font-size:13px;color:var(--mut);font-weight:600}
-.lnk-g{display:inline-block;margin-top:4px;font-weight:800;font-size:13px;color:var(--cu-d);border-bottom:2px solid currentColor}
+.score{display:grid;gap:14px;background:var(--bone);color:var(--ink);padding:24px 26px;min-width:320px;border-bottom:6px solid var(--cu);transition:transform .3s var(--ease)}
+.score:hover{transform:translateY(-4px)}
+.sc-top{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;color:var(--mut)}
+.g{width:22px;height:22px;flex:none}
+.sc-mid{display:flex;align-items:center;gap:18px}
+.sc-mid b{font-weight:900;font-stretch:86%;font-size:72px;line-height:.85}
+.sc-mid small{display:block;font-size:14px;font-weight:600;color:var(--mut);margin-top:6px}
+.stars{display:flex;gap:3px}
+.stars svg{width:20px;height:20px;fill:#f4b400}
+.sc-bar{height:6px;background:var(--bone2)}
+.sc-bar i{display:block;height:100%;width:var(--w);background:#f4b400}
+.sc-cta{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-d)}
 .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.revs blockquote{background:var(--ink2);padding:30px 26px;display:flex;flex-direction:column;gap:20px;min-width:0}
-.revs p{font-size:17px;line-height:1.55}
-.revs cite{margin-top:auto;font-style:normal;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-l)}
+.revs blockquote{background:var(--ink2);padding:26px 24px 28px;display:flex;flex-direction:column;gap:16px;min-width:0;border-top:3px solid var(--cu)}
+.revs header{display:flex;align-items:center;gap:12px}
+.revs .av{width:44px;height:44px;border-radius:50%;background:var(--cu);color:#fff;display:grid;place-items:center;font-weight:900;font-size:19px;flex:none}
+.revs cite{display:block;font-style:normal;font-weight:800;font-size:16px}
+.revs header small{display:block;font-size:12.5px;color:var(--mut2)}
+.revs header .g{margin-left:auto}
+.revs .stars svg{width:17px;height:17px}
+.revs p{font-size:16.5px;line-height:1.6;color:#e9dfd6}
+@media(max-width:760px){.rev-head{grid-template-columns:1fr}.score{min-width:0}}
 @media(max-width:900px){.revs{grid-template-columns:1fr}}
 
 /* final call */
@@ -232,6 +242,8 @@ section{padding:clamp(84px,11vw,136px) 0}
 .where a.lnk{display:inline-flex;gap:8px;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-l);border-bottom:2px solid currentColor;padding-bottom:3px}
 @media(max-width:900px){.call .wrap{grid-template-columns:1fr}}
 
+.map{padding:0;line-height:0;background:var(--bone2)}
+.map iframe{width:100%;height:clamp(340px,48vw,460px);border:0;display:block}
 footer{background:var(--ink);color:var(--mut2);padding:30px 0 104px;font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a:hover{color:var(--cu-l)}
@@ -261,17 +273,25 @@ footer a:hover{color:var(--cu-l)}
 </svg>
 
 <div id="intro" aria-hidden="true">
-  <canvas id="hair"></canvas>
-  <div class="isteps"><span class="on"><b>1</b>Raiz</span><span><b>2</b>Crescimento</span><span><b>3</b>Fio saudável</span></div>
-  <p class="icap" id="icap">Tudo começa no folículo</p>
-  <div class="ibrand">
-    <svg viewBox="0 0 100 100" style="color:var(--cu)"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M46 44C40 18 16 6 9 16C3 26 18 42 42 50M42 52C24 54 17 68 25 75C32 81 42 70 46 60"/><path pathLength="1" d="M54 44C60 18 84 6 91 16C97 26 82 42 58 50M58 52C76 54 83 68 75 75C68 81 58 70 54 60"/><path pathLength="1" d="M52 14C47 30 50 50 50 64"/><path pathLength="1" d="M41 70C41 84 59 84 59 70"/></g><ellipse pathLength="1" cx="50" cy="71" rx="4.2" ry="7" fill="currentColor" stroke="currentColor" stroke-width="1"/></svg>
-    <b><i style="--i:0">D</i><i style="--i:1">é</i><i style="--i:2">b</i><i style="--i:3">o</i><i style="--i:4">r</i><i style="--i:5">a</i> <i style="--i:7">B</i><i style="--i:8">a</i><i style="--i:9">l</i><i style="--i:10">d</i><i style="--i:11">i</i><i style="--i:12">n</i></b>
-    <small>Tricologia</small>
+  <div class="istage">
+    <svg viewBox="0 0 800 470">
+      <defs>
+        <linearGradient id="gShe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6e4129"/><stop offset=".5" stop-color="#a86c45"/><stop offset="1" stop-color="#d9a77a"/></linearGradient>
+        <linearGradient id="gHe" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1f150f"/><stop offset="1" stop-color="#5b3f2d"/></linearGradient>
+        <linearGradient id="gShine" gradientUnits="userSpaceOnUse" x1="-400" y1="0" x2="-100" y2="120">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff6e8" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g class="locks" id="locks"></g>
+      <g id="shine" stroke="url(#gShine)" fill="none" stroke-linecap="round"></g>
+      <text class="ilbl" x="240" y="466" text-anchor="middle">Ela</text>
+      <text class="ilbl" x="575" y="466" text-anchor="middle">Ele</text>
+    </svg>
+    <div class="ibrand"><b>Débora Baldin</b><small>Tricologia</small></div>
   </div>
-  <div class="ibar" id="ibar"></div>
   <button class="skip" id="skip">Pular</button>
 </div>
+<div id="page">
 
 <nav id="nav">
   <div class="wrap">
@@ -294,7 +314,8 @@ footer a:hover{color:var(--cu-l)}
       <div class="creds"><span>CRBM 15421</span><span>5,0 no Google</span><span>Tricoscopia digital</span></div>
     </div>
     <figure class="shot rv">
-      <video id="heroVid" muted loop playsinline preload="none" poster="media/hero.webp"><source src="media/hero.mp4" type="video/mp4"></video>
+      <video id="heroVid" muted loop playsinline preload="metadata" poster="media/hero.webp"><source src="media/hero.mp4" type="video/mp4"></video>
+      <button class="snd" id="snd" aria-pressed="false"><svg class="off" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4zM23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><span id="sndTxt">Ouvir</span></button>
       <figcaption><b>Débora Baldin</b>Biomédica e tricologista, no consultório em Americana.</figcaption>
     </figure>
   </div>
@@ -350,10 +371,10 @@ footer a:hover{color:var(--cu-l)}
       <article class="rv"><span class="n">01</span><h3>Avaliação com tricoscopia</h3><p>Uma lente de aumento mostra o couro cabeludo e a raiz de perto: densidade, espessura dos fios e sinais de inflamação.</p></article>
       <article class="rv"><span class="n">02</span><h3>Microagulhamento capilar</h3><p>Estimula a regeneração, melhora a circulação local e favorece a absorção dos ativos. Também para falhas na barba.</p></article>
       <article class="rv"><span class="n">03</span><h3>Laser de baixa intensidade</h3><p>O capacete de laser estimula a atividade celular dos folículos e ajuda no crescimento e na saúde dos fios.</p></article>
-      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/laser.webp"><source src="media/laser.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">No consultório</span><h3>Capacete de laser</h3></div></figure>
-      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/microagulhamento.webp"><source src="media/micro.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">Na prática</span><h3>Microagulhamento até a raiz</h3></div></figure>
-      <article class="rv"><span class="n">04</span><h3>Biorressonância</h3><p>Recurso complementar oferecido no consultório. Na avaliação a Débora explica se ele faz sentido para o seu caso.</p></article>
-      <article class="feat rv" style="grid-column:span 8"><span class="n" style="color:#fff">05</span><h3>Acompanhamento de verdade</h3><p>Fotos e tricoscopia de controle a cada etapa, para você ver a evolução e ajustar o tratamento com base em dados, não em tentativa e erro.</p><a class="btn ink" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20saber%20mais%20sobre%20os%20tratamentos." target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a></article>
+      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/laser.webp"><source src="media/laser.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">No consultório</span><h3>Laser capilar</h3></div></figure>
+      <figure class="media rv"><video class="auto" muted loop playsinline preload="none" poster="media/microagulhamento.webp"><source src="media/micro.mp4" type="video/mp4"></video><div class="cap"><span class="tag cu">Na prática</span><h3>Microagulhamento</h3></div></figure>
+      <article class="rv wide"><span class="n">04</span><h3>Biorressonância</h3><p>Recurso complementar oferecido no consultório. Na avaliação a Débora explica se ele faz sentido para o seu caso.</p></article>
+      <article class="feat rv" style="grid-column:1/-1"><span class="n" style="color:#fff">05</span><h3>Acompanhamento de verdade</h3><p>Fotos e tricoscopia de controle a cada etapa, para você ver a evolução e ajustar o tratamento com base em dados, não em tentativa e erro.</p><a class="btn ink" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20saber%20mais%20sobre%20os%20tratamentos." target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a></article>
     </div>
   </div>
 </section>
@@ -398,14 +419,15 @@ footer a:hover{color:var(--cu-l)}
 <section class="dark" id="avaliacoes">
   <div class="wrap">
     <div class="rev-head">
-      <div class="sh rv"><span class="tag cu">Avaliações</span><h2 class="big">Quem já <em>passou por aqui.</em></h2></div>
-      <div class="score rv"><b>5,0</b><span><span class="stars" aria-label="5 de 5 estrelas">★★★★★</span><small>Avaliações no Google</small><a class="lnk-g" href="https://www.google.com/maps/search/?api=1&query=Biomedicina%20%26%20Tricologia%20D%C3%A9bora%20Baldin%20Americana" target="_blank" rel="noopener">Ver todas no Google →</a></span></div>
+      <div class="sh rv"><span class="tag cu">Avaliações no Google</span><h2 class="big">Quem já <em>passou por aqui.</em></h2><p>Depoimentos reais, publicados no perfil da empresa no Google.</p></div>
+      <a class="score rv" href="https://www.google.com/maps/search/?api=1&query=Biomedicina%20%26%20Tricologia%20D%C3%A9bora%20Baldin%20Americana" target="_blank" rel="noopener">
+        <span class="sc-top"><svg class="g" viewBox="0 0 24 24" aria-label="Google"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.6l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg><span>Google · Perfil da empresa</span></span>
+        <span class="sc-mid"><b>5,0</b><span><span class="stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><small>5 avaliações, todas com 5 estrelas</small></span></span>
+        <span class="sc-bar"><i style="--w:100%"></i></span>
+        <span class="sc-cta">Ver todas no Google →</span>
+      </a>
     </div>
-    <div class="revs">
-      <blockquote class="rv"><p>“A Débora é uma excelente profissional! Achei o atendimento extremamente humanizado e de muita escuta. Estou bem animada para fazer o tratamento indicado por ela!”</p><cite>Paula Monteiro</cite></blockquote>
-      <blockquote class="rv"><p>“Explica muito bem o tratamento, ambiente tranquilo e acolhedor, além de ser uma pessoa muito simpática, coerente e ótima profissional.”</p><cite>Mayne Melicio</cite></blockquote>
-      <blockquote class="rv"><p>“Profissional atenciosa e dedicada. Gostei muito da minha primeira consulta, com explicação objetiva e clara. Recomendo.”</p><cite>Andréia</cite></blockquote>
-    </div>
+    <div class="revs"><blockquote class="rv"><header><span class="av">P</span><span><cite>Paula Monteiro</cite><small>Avaliação no Google</small></span><svg class="g" viewBox="0 0 24 24" aria-label="Google"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.6l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg></header><span class="stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><p>A Débora é uma excelente profissional! Achei o atendimento extremamente humanizado e de muita escuta.. Estou bem animada para fazer o tratamento indicado por ela! Super recomendo!</p></blockquote><blockquote class="rv"><header><span class="av">M</span><span><cite>Mayne Melicio</cite><small>Avaliação no Google</small></span><svg class="g" viewBox="0 0 24 24" aria-label="Google"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.6l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg></header><span class="stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><p>Dra Débora explica muito bem o tratamento, ambiente tranquilo e acolhedor, além de ser uma pessoa muito simpática, coerente e ótima profissional, estou gostando bastante ♥️</p></blockquote><blockquote class="rv"><header><span class="av">A</span><span><cite>Andréia</cite><small>Avaliação no Google</small></span><svg class="g" viewBox="0 0 24 24" aria-label="Google"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.6l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg></header><span class="stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><p>Dra Débora, profissional atenciosa e dedicada. Gostei muito da minha primeira consulta, com explicação objetiva e clara. Recomendo.</p></blockquote></div>
   </div>
 </section>
 
@@ -428,6 +450,10 @@ footer a:hover{color:var(--cu-l)}
   </div>
 </section>
 
+<section class="map" aria-label="Mapa">
+  <iframe title="Mapa: Biomedicina &amp; Tricologia Débora Baldin, Espaço Shiva, Americana" src="https://www.google.com/maps?q=Biomedicina+%26+Tricologia+D%C3%A9bora+Baldin,+R.+Niels+Nielsen,+150+-+Vila+Medon,+Americana+-+SP&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</section>
+
 <footer>
   <div class="wrap">
     <span>Débora Baldin · Biomédica e Tricologista · CRBM 15421 · Americana-SP</span>
@@ -435,134 +461,51 @@ footer a:hover{color:var(--cu-l)}
   </div>
 </footer>
 
+</div>
+
 <a class="wa" href="https://wa.me/5519971295296?text=Ol%C3%A1%20D%C3%A9bora!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20capilar." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a>
 
 <script>
 const WA='https://wa.me/5519971295296?text=';
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------- intro: hair growing from the follicles of two profiles ----------
+// ---------- intro: her long lock and his short cut drawn in, then a shine ----------
 const intro=document.getElementById('intro');
 let ended=false;
-function endIntro(){if(ended)return;ended=true;scrollTo(0,0);intro.classList.add('out');document.body.classList.remove('lock');boot();setTimeout(()=>intro.remove(),1000)}
+function showPage(){document.body.classList.remove('lock');document.body.classList.add('ready');boot()}
+function endIntro(){if(ended)return;ended=true;scrollTo(0,0);intro.classList.add('out');showPage();setTimeout(()=>intro.remove(),1000)}
 let seen=false;try{seen=!!sessionStorage.getItem('db-intro')}catch(e){}
-if(seen||reduce){intro.remove();document.body.classList.remove('lock');addEventListener('DOMContentLoaded',boot)}
+if(seen||reduce){intro.remove();addEventListener('DOMContentLoaded',showPage)}
 else{
   try{sessionStorage.setItem('db-intro','1')}catch(e){}
   history.scrollRestoration='manual';
   document.getElementById('skip').onclick=endIntro;
-  runIntro();
+  const NS='http://www.w3.org/2000/svg',locks=document.getElementById('locks'),shine=document.getElementById('shine');
+  const r=(a,b)=>a+Math.random()*(b-a),f=n=>n.toFixed(1);
+  const add=(d,stroke,w,delay)=>{
+    const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('pathLength','1');
+    p.setAttribute('stroke',stroke);p.setAttribute('stroke-width',w);p.style.setProperty('--d',delay+'s');locks.appendChild(p);
+    const s=p.cloneNode();s.removeAttribute('stroke');s.setAttribute('stroke-width',w*.8);shine.appendChild(s);
+  };
+  // her: long wavy strands parted at the top and falling in soft S-curves
+  for(let i=0;i<46;i++){
+    const k=i/45,x=170+k*140,top=40+Math.pow(k-.5,2)*120,sway=r(-8,8);
+    add(`M${f(240+(k-.5)*30)} ${f(top-10)}C${f(x-30+sway)} ${f(top+60)} ${f(x+40+sway)} ${f(150)} ${f(x+sway)} ${f(240)}S${f(x-35+sway)} ${f(360)} ${f(x+10+sway*1.5)} ${f(r(420,445))}`,'url(#gShe)',r(1.4,2.4),(k*.5+r(0,.25)).toFixed(2));
+  }
+  // him: short textured cut, strands rising from a curved hairline and brushed to one side
+  for(let i=0;i<70;i++){
+    const k=i/69,bx=470+k*210,by=380-Math.sin(k*Math.PI)*40,h=r(110,175)*(1-Math.abs(k-.5)*.6);
+    add(`M${f(bx)} ${f(by)}C${f(bx+r(-4,6))} ${f(by-h*.45)} ${f(bx+h*.2)} ${f(by-h*.85)} ${f(bx+h*.42+r(0,12))} ${f(by-h)}`,'url(#gHe)',r(1.6,2.8),(.25+k*.45+r(0,.2)).toFixed(2));
+  }
+  const g=document.getElementById('gShine');
+  locks.getBoundingClientRect();setTimeout(()=>intro.classList.add('draw'),80);
+  setTimeout(()=>{ // shine sweeps once across both locks
+    const t0=performance.now();
+    (function sw(now){const t=Math.min(1,(now-t0)/1300),x=-400+t*1500;g.setAttribute('x1',x);g.setAttribute('x2',x+300);if(t<1&&!ended)requestAnimationFrame(sw)})(t0);
+  },2300);
+  setTimeout(()=>intro.classList.add('brand'),2900);
+  setTimeout(endIntro,5000);
 }
-
-function runIntro(){
-  const cv=document.getElementById('hair'),ctx=cv.getContext('2d');
-  const steps=[...intro.querySelectorAll('.isteps span')],cap=document.getElementById('icap'),bar=document.getElementById('ibar');
-  let W,H,dpr,S,ox,oy,sceneW;
-  // head profile facing right, in a 360x380 local box
-  const HEAD=new Path2D('M66 372C66 330 56 300 46 235C36 150 78 62 170 55C240 50 284 98 288 140L292 172C300 186 312 205 318 224L301 234L303 249L297 257L301 269C297 290 286 304 266 310C246 314 226 302 216 310L212 372');
-  const EYE=new Path2D('M258 160C265 166 274 166 280 161');
-  const EAR=new Path2D('M176 200C164 196 160 214 166 228C170 238 180 240 186 236');
-  const rnd=(a,b)=>a+Math.random()*(b-a);
-  const bez=(p,t)=>{const u=1-t;return[u*u*u*p[0]+3*u*u*t*p[2]+3*u*t*t*p[4]+t*t*t*p[6],u*u*u*p[1]+3*u*u*t*p[3]+3*u*t*t*p[5]+t*t*t*p[7]]};
-  const SCALP=[[46,235,36,150,78,62,170,55],[170,55,240,50,284,98,288,140]];
-  const C=[168,200];
-  function scalpPoint(tMax){ // random root on the scalp curve, normal pointing outward
-    const t=Math.random()*tMax,seg=t<1?0:1,p=bez(SCALP[seg],seg?t-1:t);
-    const a=Math.atan2(p[1]-C[1],p[0]-C[0]);
-    return{x:p[0]+Math.cos(a)*rnd(-4,1),y:p[1]+Math.sin(a)*rnd(-4,1),a,t};
-  }
-  const strands=[];
-  // she: long hair falling back and down over the shoulders
-  const SHE=['#7a4a2e','#9a6240','#b97f55','#d4a275','#5e3a26'];
-  for(let i=0;i<1500;i++){
-    const r=scalpPoint(1.88),back=1-r.t/1.88;
-    strands.push({who:1,x:r.x,y:r.y,a0:r.a-1.1+back*.6,target:Math.PI/2+.45+back*.2-Math.PI*2,pull:rnd(.16,.24),len:rnd(240,320)*(.6+back*.5),segs:16,col:(Math.random()*SHE.length)|0,w:rnd(.7,1.5),delay:rnd(0,.7),dur:rnd(1.6,2.1),ph:rnd(0,6.28),amp:rnd(.02,.05)});
-  }
-  // he: short hair swept back, plus beard and moustache
-  const HE=['#2b1c14','#3d291d','#53382a','#1d130e'];
-  for(let i=0;i<1300;i++){
-    const r=scalpPoint(1.82);
-    strands.push({who:0,x:r.x,y:r.y,a0:r.a-1.15,target:Math.PI*.9-Math.PI*2,pull:rnd(.04,.08),len:rnd(14,26),segs:5,col:(Math.random()*HE.length)|0,w:rnd(.9,1.6),delay:rnd(0,.6),dur:rnd(.8,1.1),ph:rnd(0,6.28),amp:rnd(.01,.03)});
-  }
-  for(let i=0;i<620;i++){ // beard: roots fill the jaw area between chin and ear
-    const u=Math.random(),v=Math.random();
-    const x=300-u*112+v*rnd(-6,10)*(1-u),y=268+u*-30+v*(40*(1-u)+6);
-    if(x>298&&y<270)continue;
-    strands.push({who:0,x,y,a0:Math.PI/2-.25+u*.5,target:Math.PI/2+.1,pull:.08,len:rnd(10,22),segs:4,col:(Math.random()*HE.length)|0,w:rnd(.8,1.4),delay:rnd(1,1.6),dur:rnd(.7,1),ph:rnd(0,6.28),amp:.01});
-  }
-  for(let i=0;i<90;i++){
-    const u=Math.random();
-    strands.push({who:0,x:276+u*24,y:238+u*2,a0:Math.PI/2+.35,target:Math.PI/2+.4,pull:.1,len:rnd(8,13),segs:3,col:(Math.random()*HE.length)|0,w:rnd(.8,1.3),delay:rnd(1,1.6),dur:.8,ph:rnd(0,6.28),amp:.01});
-  }
-  strands.forEach(s=>{while(s.target>s.a0)s.target-=Math.PI*2;while(s.a0-s.target>Math.PI*2)s.target+=Math.PI*2}); // always turn back over the head, never across the face
-  const cols=[HE,SHE];
-  function resize(){
-    dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
-    cv.width=W*dpr;cv.height=H*dpr;
-    const narrow=W<720;sceneW=narrow?700:920;
-    S=Math.min(W*.94/sceneW,H*(narrow?.5:.62)/420);
-    ox=(W-sceneW*S)/2;oy=H*(narrow?.2:.14);
-  }
-  resize();addEventListener('resize',resize);
-  // local → screen: he on the left facing right, she mirrored on the right facing left
-  function head(who){return who?{m:-1,x:ox+sceneW*S}:{m:1,x:ox}}
-  function drawHead(who,k){
-    const h=head(who);
-    ctx.setTransform(dpr*S*h.m,0,0,dpr*S,dpr*h.x,dpr*oy);
-    ctx.globalAlpha=k;ctx.lineWidth=1.6/S;ctx.strokeStyle='#1b1310';ctx.lineCap='round';
-    ctx.setLineDash([2200]);ctx.lineDashOffset=2200*(1-k);
-    ctx.stroke(HEAD);ctx.setLineDash([]);
-    ctx.globalAlpha=k*.7;ctx.stroke(EYE);ctx.stroke(EAR);
-    ctx.globalAlpha=1;
-  }
-  const ease=t=>t<0?0:t>1?1:1-Math.pow(1-t,3);
-  const t0=performance.now(),END=6.6;
-  let phase=-1;
-  const caps=['Tudo começa no folículo','A raiz saudável sustenta o fio','Fios fortes, para ele e para ela'];
-  function setPhase(i){if(i===phase)return;phase=i;steps.forEach((s,k)=>{s.classList.toggle('on',k===i);s.classList.toggle('done',k<i)});cap.classList.add('swap');setTimeout(()=>{cap.textContent=caps[i];cap.classList.remove('swap')},300)}
-  function frame(now){
-    if(ended)return;
-    const t=(now-t0)/1000;
-    bar.style.width=Math.min(100,t/END*100)+'%';
-    setPhase(t<1.1?0:t<3.4?1:2);
-    if(t>4.5&&!intro.classList.contains('brand'))intro.classList.add('brand');
-    ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);
-    const fade=t>4.5?Math.max(.18,1-(t-4.5)*.9):1;
-    drawHead(0,ease(t/1.1)*fade);drawHead(1,ease((t-.15)/1.1)*fade);
-    const grow=t-1.0,sweep=(t-3.3)/1.1; // shine sweep runs across the scene in local x
-    for(const who of[0,1]){
-      const h=head(who);
-      ctx.setTransform(dpr*S*h.m,0,0,dpr*S,dpr*h.x,dpr*oy);
-      ctx.lineCap='round';
-      // follicles: dots that pulse before the hair appears
-      if(t>.5&&t<2.4){
-        ctx.globalAlpha=Math.min(1,(t-.5)*2)*Math.max(0,1-(t-1.6)*1.25)*fade;ctx.fillStyle='#b8744f';
-        for(let i=who;i<strands.length;i+=7){const s=strands[i];if(s.who===who)ctx.fillRect(s.x-1.4,s.y-1.4,2.8,2.8)}
-      }
-      const pal=cols[who],paths=pal.map(()=>new Path2D()),shine=new Path2D();
-      for(const s of strands){
-        if(s.who!==who)continue;
-        const g=ease((grow-s.delay)/s.dur);if(g<=0)continue;
-        const p=paths[s.col],n=s.segs*g,step=s.len/s.segs;
-        let x=s.x,y=s.y,a=s.a0;p.moveTo(x,y);
-        const lit=sweep>0&&sweep<1.3&&Math.abs(s.x/360-sweep*1.1+.1)<.12;
-        if(lit)shine.moveTo(x,y);
-        for(let k=0;k<n;k++){
-          const f=Math.min(1,n-k);
-          a+=(s.target-a)*s.pull*1.6+Math.sin(t*1.7+s.ph+k*.4)*s.amp*(k/s.segs);
-          x+=Math.cos(a)*step*f;y+=Math.sin(a)*step*f;
-          p.lineTo(x,y);if(lit)shine.lineTo(x,y);
-        }
-      }
-      pal.forEach((c,i)=>{ctx.globalAlpha=fade;ctx.strokeStyle=c;ctx.lineWidth=who?1.05:1.25;ctx.stroke(paths[i])});
-      ctx.globalAlpha=.7*fade;ctx.strokeStyle=who?'#f3d3ae':'#a0765a';ctx.lineWidth=1.2;ctx.stroke(shine);
-    }
-    ctx.globalAlpha=1;
-    if(t<END)requestAnimationFrame(frame);else endIntro();
-  }
-  requestAnimationFrame(frame);
-}
-
 // ---------- page ----------
 let booted=false;
 function boot(){
@@ -578,6 +521,13 @@ function boot(){
 
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+
+// hero video: sound on demand
+const heroVid=document.getElementById('heroVid'),snd=document.getElementById('snd'),sndTxt=document.getElementById('sndTxt');
+snd.onclick=()=>{
+  const on=heroVid.muted;heroVid.muted=!on;snd.setAttribute('aria-pressed',on);sndTxt.textContent=on?'Som ligado':'Ouvir';
+  if(on){heroVid.currentTime=0;heroVid.play().catch(()=>{});vids.forEach(o=>o.querySelector('video').pause())}
+};
 
 // warning-signs checklist → prefilled WhatsApp message
 const chk=[...document.querySelectorAll('#chk button')],result=document.getElementById('result'),resTxt=document.getElementById('resTxt'),resBtn=document.getElementById('resBtn');
@@ -595,7 +545,7 @@ const vids=[...document.querySelectorAll('.vid')];
 vids.forEach(b=>{const v=b.querySelector('video');
   b.onclick=()=>{
     if(!v.paused){v.pause();return}
-    vids.forEach(o=>{if(o!==b){o.querySelector('video').pause()}});
+    vids.forEach(o=>{if(o!==b){o.querySelector('video').pause()}});if(!heroVid.muted)snd.click();
     v.play().catch(()=>{});
   };
   v.onplay=()=>b.classList.add('on');v.onpause=()=>b.classList.remove('on');v.onended=()=>{b.classList.remove('on');v.load()};
